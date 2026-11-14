@@ -1,0 +1,119 @@
+{
+  "schema": "tidal-atlas-harmonic-pyramid-v2",
+  "provisional": false,
+  "constituents": [
+    "M2",
+    "S2",
+    "N2",
+    "K1",
+    "O1",
+    "Q1",
+    "P1"
+  ],
+  "sampleCount": 721,
+  "fitSpanDays": 30.0,
+  "modelTimeOriginUnix": 1735689600.0,
+  "velocity": {
+    "level": "surface",
+    "surfaceFactor": {
+      "form": "1 + k sqrt(g n^2 / max(H, 1)^(1/3)) / 0.41",
+      "k": 0.9,
+      "manning": "manning.gr3",
+      "manningClamp": [
+        0.01,
+        0.037
+      ],
+      "nodeFactorRange": [
+        1.0381664037704468,
+        1.2543870210647583
+      ],
+      "nodeFactorMedian": 1.1185743808746338
+    }
+  },
+  "artifacts": [
+    {
+      "site": "full-domain",
+      "file": "full-domain-flow.json",
+      "bytes": 24967681,
+      "sha256": "68d1e9efb74555c33e121a4af9a25f8bd6af50e77d12ad0e5edb363cefa99462"
+    },
+    {
+      "site": "active-region",
+      "file": "active-region-flow.json",
+      "bytes": 6372780,
+      "sha256": "5a8662fe527d0ae8f3b39e07e39904d287305606bc4957c8b4c519af2ad37890"
+    },
+    {
+      "site": "sechelt-region",
+      "file": "sechelt-region-flow.json",
+      "bytes": 1534190,
+      "sha256": "e9f400ff0eac3b7ac245b79d7eb19c3c9d2ea05e7f70837ba37c7dab20bf861d"
+    },
+    {
+      "site": "active-pass",
+      "file": "active-pass-flow.json",
+      "bytes": 2694794,
+      "sha256": "650e9ab39109fdc79aa0f1839e8dd08f51fd172377c194905779a562d2964c59"
+    },
+    {
+      "site": "sechelt-rapids",
+      "file": "sechelt-rapids-flow.json",
+      "bytes": 2107680,
+      "sha256": "207be7bb8d17299cb831bdf739a32a60f77ef6fa62b5d79fc2ede97d8f84a63f"
+    },
+    {
+      "site": "calamity-point",
+      "file": "calamity-point-flow.json",
+      "bytes": 1292864,
+      "sha256": "49a32869974bfee207e6bc97572be923418f09e0dd39c3ef01c6443b45c43480"
+    },
+    {
+      "site": "second-narrows",
+      "file": "second-narrows-flow.json",
+      "bytes": 1113714,
+      "sha256": "659f43b1a3df27c7923fee3160989a8724de4d9b3d8c17a4b1ee88b2d8306ea7"
+    },
+    {
+      "site": "first-narrows",
+      "file": "first-narrows-flow.json",
+      "bytes": 1378182,
+      "sha256": "ec26cf454c0eb853e1b07def916b28b874c35e71124705ceb2cab40a53c85884"
+    },
+    {
+      "site": "tillicum-bridge",
+      "file": "tillicum-bridge-flow.json",
+      "bytes": 362155,
+      "sha256": "50253e576f82d7a11cbc9f31b1a135d17e14f84a395faa4b4670e6d61053de4d"
+    },
+    {
+      "site": "race-passage",
+      "file": "race-passage-flow.json",
+      "bytes": 3040010,
+      "sha256": "d0a1075873c3337acfabf51824a764cf030d72856fc59165f671aa94a2b348ab"
+    },
+    {
+      "site": "porlier-pass",
+      "file": "porlier-pass-flow.json",
+      "bytes": 2123292,
+      "sha256": "f978548669ee55cd4a351c63b6e73781fc1abdb9584aa3b271850e068f8d375f"
+    },
+    {
+      "site": "gabriola-passage",
+      "file": "gabriola-passage-flow.json",
+      "bytes": 1319426,
+      "sha256": "232a3f7a97695bca05b208607caed8f42d051d647ab85a879203e5d8ab6af08f"
+    },
+    {
+      "site": "dodd-narrows",
+      "file": "dodd-narrows-flow.json",
+      "bytes": 981679,
+      "sha256": "7b5d09ac93de28cd597a57b1aad8e371077283530d541ba46c24d5f8382ab6ac"
+    },
+    {
+      "site": "seymour-narrows",
+      "file": "seymour-narrows-flow.json",
+      "bytes": 2138041,
+      "sha256": "ef923a15e1a6f3cc0480f9c92be811639e1543be7d5b86f7dd26b51c1dd238df"
+    }
+  ]
+}
