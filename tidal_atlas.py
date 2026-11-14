@@ -13,7 +13,7 @@ interpolated in time and nothing expires: the same constants answer for any
 date. They carry no nodal corrections, so they are most exact for 2025 and
 drift by a few per cent of amplitude over the 18.6-year nodal cycle.
 
-Three readers, one per file format, all with the same two questions:
+Three readers of the model, one per file format, all with the same two questions:
 
     Pyramid("weights/pyramid")   the full model: currents and tide heights,
                                  14 nested grids, 180 m down to 10 m
@@ -26,6 +26,10 @@ Three readers, one per file format, all with the same two questions:
     model.tide(lon, lat, when)     -> metres about mean water level, or None
 
 `when` is a `datetime` (naive ones are taken as UTC) or Unix seconds.
+
+A fourth reader, `Coast("weights/coast.pack")`, holds the shoreline the model
+is drawn against: land polygons at four levels of detail, with `is_land`.
+
 Depends on numpy and the standard library.
 """
 
@@ -41,7 +45,7 @@ from pathlib import Path
 
 import numpy as np
 
-__all__ = ["Pyramid", "FlowPack", "TidePack", "Grid", "speed_and_bearing", "KNOTS_PER_M_S"]
+__all__ = ["Pyramid", "FlowPack", "TidePack", "Coast", "Grid", "speed_and_bearing", "KNOTS_PER_M_S"]
 
 KNOTS_PER_M_S = 1.943844
 
@@ -314,3 +318,59 @@ class TidePack:
             return None
         factors = _factors(self.frequencies, self.epoch, _unix(when) - self.time_origin)
         return float(factors @ self.planes[:, best[1], best[2]] * 0.001)
+
+
+class Coast:
+    """`coast.pack`: the shoreline as land polygons, from OpenStreetMap.
+
+    Four levels of detail, finest first: the same rings simplified to about
+    1 m, 33 m, 167 m and 891 m. Draw with the coarsest that looks right at
+    your scale. Land rings run counter-clockwise and enclosed water (a lake
+    on an island) clockwise, so filling every ring of a level in one path
+    under the nonzero winding rule gives land with its holes.
+
+    `rings(level)` yields each ring as an (n, 2) array of longitude and
+    latitude in degrees, closed implicitly.
+    """
+
+    TOLERANCES_M = (1, 33, 167, 891)
+
+    def __init__(self, path):
+        d = Path(path).read_bytes()
+        if d[:8] != b"COASTLN1":
+            raise ValueError("not a coastline pack")
+        levels, scale = struct.unpack_from("<Id", d, 8)
+        self._levels = []
+        for level in range(levels):
+            o, count = struct.unpack_from("<QI", d, 20 + 12 * level)
+            rings, boxes, land = [], [], []
+            for _ in range(count):
+                counter_clockwise, n, west, south, east, north = struct.unpack_from("<BI4f", d, o)
+                o += 21
+                rings.append(np.frombuffer(d, dtype="<i4", count=2 * n, offset=o).reshape(n, 2) / scale)
+                boxes.append((west, south, east, north))
+                land.append(bool(counter_clockwise))
+                o += 8 * n
+            self._levels.append((rings, np.array(boxes), land))
+
+    @property
+    def level_count(self) -> int:
+        return len(self._levels)
+
+    def rings(self, level=0):
+        """Each ring of a level as an (n, 2) array of (lon, lat) degrees."""
+        return iter(self._levels[level][0])
+
+    def is_land(self, lon, lat, level=0) -> bool:
+        """Whether a point is on land: the winding number over the level's rings."""
+        rings, boxes, _ = self._levels[level]
+        inside = (boxes[:, 0] <= lon) & (lon <= boxes[:, 2]) & (boxes[:, 1] <= lat) & (lat <= boxes[:, 3])
+        winding = 0
+        for index in np.flatnonzero(inside):
+            ring = rings[index]
+            x0, y0 = ring[:, 0], ring[:, 1]
+            x1, y1 = np.roll(x0, -1), np.roll(y0, -1)
+            side = (x1 - x0) * (lat - y0) - (lon - x0) * (y1 - y0)
+            winding += int(np.sum((y0 <= lat) & (y1 > lat) & (side > 0)))
+            winding -= int(np.sum((y0 > lat) & (y1 <= lat) & (side < 0)))
+        return winding != 0

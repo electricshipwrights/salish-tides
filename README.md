@@ -7,8 +7,10 @@ height of the tide. No network, no service, no expiry: the constants answer
 for any date.
 
 This repository is the production model of the Tidal Atlas apps and
-nothing else: the weights, one Python file that reads them, and three
-examples.
+nothing else: the weights, the coastline they are drawn against, one Python
+file that reads them, and four examples. The model is the one labelled
+**v2** in the project's calibration record, exported 2026-11-06 (see
+Version below).
 
 ```python
 from datetime import datetime, timezone
@@ -29,8 +31,9 @@ height = model.tide(-123.254, 49.337, when)             # Point Atkinson, m abou
 | `weights/pyramid/` | The full model: 14 grids of current and tide-height constants, with `manifest.json` | 50 MB |
 | `weights/flow.pack` | Currents only, Canadian waters only, tiled for fast random access | 24 MB |
 | `weights/tide.pack` | Tide heights only, one 730 m grid | 0.4 MB |
-| `tidal_atlas.py` | The reader: `Pyramid`, `FlowPack`, `TidePack` | one file, numpy only |
-| `examples/` | Current over the next 12 hours; slack water in a pass; a day's tide curve | |
+| `weights/coast.pack` | The coastline: land polygons at four levels of detail, from OpenStreetMap | 7 MB |
+| `tidal_atlas.py` | The reader: `Pyramid`, `FlowPack`, `TidePack`, `Coast` | one file, numpy only |
+| `examples/` | Current over the next 12 hours; slack water in a pass; a day's tide curve; a chart as SVG | |
 | `check.py` | Verifies file hashes and the three readers against each other | |
 | `FORMATS.md` | Byte-level description of each file | |
 | `MODEL.md` | How the model was made, how it scores, where it is wrong | |
@@ -49,6 +52,7 @@ python check.py                                   # hashes and self-consistency
 python examples/current_now.py                    # Active Pass, next 12 hours
 python examples/slack_water.py -123.8171 49.1344  # Dodd Narrows, today's turns
 python examples/tide_curve.py -123.371 48.424     # Victoria, today's tide
+python examples/chart_svg.py                      # Active Pass now, coastline and arrows
 ```
 
 Every reader answers the same two questions:
@@ -64,6 +68,11 @@ nothing is interpolated in space or time.
 
 `Grid.constants(lon, lat)` returns the amplitude and phase of each
 constituent, for anyone who wants the harmonics rather than a value.
+
+`Coast` is separate from the model: `rings(level)` gives the land polygons
+as longitude and latitude, and `is_land(lon, lat)` tests a point. The model
+has its own idea of where water is (a cell either has constants or does
+not); the coastline is for drawing and is finer than the model's grids.
 
 ## Coverage
 
@@ -106,10 +115,18 @@ Canadian Tide and Current Tables.
 
 ## Version
 
-`2026-11-06`, from the 32-day run
-`all7-south-closed-hom3d-admflux-dt30-day32-r96-v2`. The manifest records
-the fit and the velocity export in full.
+**v2**, exported 2026-11-06 from the 32-day run
+`all7-south-closed-hom3d-admflux-dt30-day32-r96-v2`, with the current at the
+near-surface level described in `MODEL.md`. The manifest records the fit and
+the velocity export in full. "v2" is that run's own label: its first
+attempt was stopped when a narrows ran dry, and v2 is the corrected rerun.
+The two-dimensional model the apps shipped before it is not here.
 
 ## License
 
-Not yet chosen. Until a license file is added, all rights are reserved.
+The model weights and the code: not yet chosen. Until a license file is
+added, all rights are reserved.
+
+`weights/coast.pack` is a database derived from OpenStreetMap and is made
+available under the Open Database License 1.0, whatever is chosen for the
+rest. Credit "(c) OpenStreetMap contributors" wherever it is used.

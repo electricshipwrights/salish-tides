@@ -9,7 +9,7 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
-from tidal_atlas import FlowPack, Pyramid, TidePack
+from tidal_atlas import Coast, FlowPack, Pyramid, TidePack
 
 root = Path(__file__).resolve().parent / "weights"
 manifest = json.loads((root / "pyramid" / "manifest.json").read_text())
@@ -43,4 +43,9 @@ us = (-122.75, 48.55)  # Rosario Strait: in the pyramid, cut from the pack
 ok = pyramid.current(*us, when) is not None and pack.current(*us, when) is None
 bad += not ok
 print(("ok   " if ok else "BAD  ") + "US waters: in the pyramid, absent from the pack")
+coast = Coast(root / "coast.pack")
+ok = (coast.level_count == 4 and coast.is_land(-123.10, 49.26) and coast.is_land(-123.50, 48.80)
+      and not coast.is_land(-123.5, 49.2) and not coast.is_land(-123.3128, 48.8604))
+bad += not ok
+print(("ok   " if ok else "BAD  ") + "coastline: Vancouver and Saltspring are land, the Strait and Active Pass are not")
 sys.exit(1 if bad else 0)

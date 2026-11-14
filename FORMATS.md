@@ -89,6 +89,29 @@ by row. Plane `2c` is coefficient `c` east and plane `2c + 1` coefficient
 `c` north. Edge tiles are cut to the grid, so a tile's width is
 `min(32, nx - 32 * tx)` and likewise its height.
 
+## The coastline pack: `weights/coast.pack`
+
+Land polygons from OpenStreetMap's coastline, at four levels of detail:
+each ring simplified (Douglas-Peucker) to 1 m, 33 m, 167 m and 891 m.
+Level 0 is the finest. It is not model output and does not depend on the
+model version.
+
+    "COASTLN1"            8 bytes
+    u32                   level count (4)
+    f64                   scale (10,000,000): stored integer = degrees * scale
+    per level:            u64 offset of its first ring, u32 ring count
+
+    per ring:
+      u8                  1 if counter-clockwise (land), 0 if clockwise (water inside land)
+      u32                 point count n
+      f32 x 4             bounding box: west, south, east, north, degrees
+      (i32, i32) x n      longitude, latitude, each degrees * scale
+
+Rings are closed implicitly. Their orientation is the fill rule: put every
+ring of a level in one path and fill it nonzero, and enclosed water comes
+out as holes. Coordinates are WGS 84 longitude and latitude; the apps
+project them to Mercator when they read the file.
+
 ## The tide pack: `weights/tide.pack`
 
 Tide heights only, on one grid: the full-domain elevation coefficients
