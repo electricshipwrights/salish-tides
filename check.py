@@ -9,7 +9,7 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
-from tidal_atlas import Coast, FlowPack, Pyramid, TidePack
+from salish_tides import Coast, FlowPack, Pyramid, TidePack
 
 root = Path(__file__).resolve().parent / "weights"
 manifest = json.loads((root / "pyramid" / "manifest.json").read_text())

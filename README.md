@@ -1,22 +1,25 @@
 # salish-tides
 
-The Salish Sea tidal model, as open weights.
+A tidal model of the Salish Sea, as open weights.
 
-Tidal currents and tide heights for the Salish Sea, from Juan de Fuca to
-Seymour Narrows, as harmonic constants on grids from 180 m down to 10 m in
-the passes. Give it a place and a time and it returns the current and the
+The Salish Sea is the inland sea shared by British Columbia and Washington:
+Juan de Fuca Strait, the Strait of Georgia, and the islands and passes
+between them. Its tides run to five metres and its narrow passes to ten
+knots and more, turning four times a day.
+
+This repository holds the output of a hydrodynamic model of those tides,
+reduced to harmonic constants on grids from 180 m down to 10 m in the
+passes. Give it a place and a time and it returns the current and the
 height of the tide. No network, no service, no expiry: the constants answer
 for any date.
 
-This repository is the production model of the Tidal Atlas apps and
-nothing else: the weights, the coastline they are drawn against, one Python
-file that reads them, and four examples. The model is the one labelled
-**v2** in the project's calibration record, exported 2026-11-06 (see
-Version below).
+It contains the weights, a coastline to draw them against, one Python file
+that reads them, and four examples. It does not contain the hydrodynamic
+model itself or the data it was computed from; `MODEL.md` describes both.
 
 ```python
 from datetime import datetime, timezone
-from tidal_atlas import Pyramid, speed_and_bearing
+from salish_tides import Pyramid, speed_and_bearing
 
 model = Pyramid("weights/pyramid")
 when = datetime(2025, 7, 4, 17, 0, tzinfo=timezone.utc)
@@ -34,7 +37,7 @@ height = model.tide(-123.254, 49.337, when)             # Point Atkinson, m abou
 | `weights/flow.pack` | Currents only, Canadian waters only, tiled for fast random access | 24 MB |
 | `weights/tide.pack` | Tide heights only, one 730 m grid | 0.4 MB |
 | `weights/coast.pack` | The coastline: land polygons at four levels of detail, from OpenStreetMap | 7 MB |
-| `tidal_atlas.py` | The reader: `Pyramid`, `FlowPack`, `TidePack`, `Coast` | one file, numpy only |
+| `salish_tides.py` | The reader: `Pyramid`, `FlowPack`, `TidePack`, `Coast` | one file, numpy only |
 | `examples/` | Current over the next 12 hours; slack water in a pass; a day's tide curve; a chart as SVG | |
 | `check.py` | Verifies file hashes and the three readers against each other | |
 | `FORMATS.md` | Byte-level description of each file | |
@@ -42,8 +45,8 @@ height = model.tide(-123.254, 49.337, when)             # Point Atkinson, m abou
 
 The three weight files hold the same model in three shapes. Use the pyramid
 when you want everything or want to read the constants themselves; the flow
-pack when you want currents fast from a small memory footprint, which is
-what the apps do; the tide pack when you only want heights.
+pack when you want currents fast from a small memory footprint, as a
+phone or a web page would; the tide pack when you only want heights.
 
 ## Use
 
@@ -117,12 +120,9 @@ Canadian Tide and Current Tables.
 
 ## Version
 
-**v2**, exported 2026-11-06 from the 32-day run
-`all7-south-closed-hom3d-admflux-dt30-day32-r96-v2`, with the current at the
-near-surface level described in `MODEL.md`. The manifest records the fit and
-the velocity export in full. "v2" is that run's own label: its first
-attempt was stopped when a narrows ran dry, and v2 is the corrected rerun.
-The two-dimensional model the apps shipped before it is not here.
+`2026-11-06`. The weights will be replaced as the model improves; each
+release is tagged by its date, and `MODEL.md` and
+`weights/pyramid/manifest.json` describe the run and the fit behind it.
 
 ## License
 
@@ -133,8 +133,8 @@ As open as the source data allows. Details and the required notices are in
 - **Coastline** (`weights/coast.pack`): Open Database License 1.0,
   (c) OpenStreetMap contributors.
 - **Model weights**: Creative Commons Attribution-NonCommercial 4.0. The
-  non-commercial limit comes from the Canadian Hydrographic Service data and
-  the tidal atlas the model was computed from, not from us.
+  non-commercial limit comes from the terms of the data the model was
+  computed from, not from us.
 
 This product is not to be used for navigation. It contains intellectual
 property of the Canadian Hydrographic Service of the Department of Fisheries

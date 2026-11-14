@@ -1,4 +1,4 @@
-"""Read the Salish Sea tidal model: currents and tide heights at any place and time.
+"""Read the salish-tides weights: currents and tide heights at any place and time.
 
 The model is a set of harmonic constants on grids. At every wet cell it
 stores a mean and a cosine/sine pair for each of seven tidal constituents

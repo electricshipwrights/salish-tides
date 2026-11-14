@@ -5,7 +5,7 @@ as open as the data they were made from allows.
 
 | what | terms |
 |---|---|
-| The code: `tidal_atlas.py`, `check.py`, `examples/` | MIT, see `LICENSE` |
+| The code: `salish_tides.py`, `check.py`, `examples/` | MIT, see `LICENSE` |
 | The coastline: `weights/coast.pack` | Open Database License 1.0 |
 | The model: `weights/pyramid/`, `weights/flow.pack`, `weights/tide.pack` | Creative Commons Attribution-NonCommercial 4.0, with the notices below |
 
@@ -37,7 +37,7 @@ Shipwrights and with the notices below kept.
 They are not offered for commercial use, and that is not a choice made
 here. The model was computed from Canadian Hydrographic Service data whose
 licence forbids derivative products made for profit, and its ocean boundary
-from a tidal atlas offered for non-commercial use. Nobody downstream of
+from a global tide solution offered for non-commercial use. Nobody downstream of
 those terms can grant more than they do.
 
 ### Required notice: Canadian Hydrographic Service

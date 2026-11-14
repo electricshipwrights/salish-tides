@@ -20,5 +20,5 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-This licence covers the code in this repository: tidal_atlas.py, check.py and
+This licence covers the code in this repository: salish_tides.py, check.py and
 examples/. The files under weights/ are covered by LICENSING.md instead.

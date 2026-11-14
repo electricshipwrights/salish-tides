@@ -13,7 +13,7 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from tidal_atlas import KNOTS_PER_M_S, Pyramid
+from salish_tides import KNOTS_PER_M_S, Pyramid
 
 root = Path(__file__).resolve().parent.parent
 lon, lat = (float(sys.argv[1]), float(sys.argv[2])) if len(sys.argv) >= 3 else (-123.8171, 49.1344)

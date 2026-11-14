@@ -8,7 +8,7 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from tidal_atlas import TidePack
+from salish_tides import TidePack
 
 lon, lat = (float(sys.argv[1]), float(sys.argv[2])) if len(sys.argv) >= 3 else (-123.254, 49.337)
 day = (datetime.fromisoformat(sys.argv[3]) if len(sys.argv) == 4 else datetime.now(timezone.utc)).replace(

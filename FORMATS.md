@@ -109,8 +109,7 @@ model version.
 
 Rings are closed implicitly. Their orientation is the fill rule: put every
 ring of a level in one path and fill it nonzero, and enclosed water comes
-out as holes. Coordinates are WGS 84 longitude and latitude; the apps
-project them to Mercator when they read the file.
+out as holes. Coordinates are WGS 84 longitude and latitude.
 
 ## The tide pack: `weights/tide.pack`
 

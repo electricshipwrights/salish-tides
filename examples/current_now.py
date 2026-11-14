@@ -8,7 +8,7 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from tidal_atlas import KNOTS_PER_M_S, FlowPack, speed_and_bearing
+from salish_tides import KNOTS_PER_M_S, FlowPack, speed_and_bearing
 
 lon, lat = (float(sys.argv[1]), float(sys.argv[2])) if len(sys.argv) == 3 else (-123.3128, 48.8604)
 pack = FlowPack(Path(__file__).resolve().parent.parent / "weights" / "flow.pack")

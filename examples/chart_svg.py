@@ -11,7 +11,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from tidal_atlas import KNOTS_PER_M_S, Coast, Pyramid
+from salish_tides import KNOTS_PER_M_S, Coast, Pyramid
 
 root = Path(__file__).resolve().parent.parent / "weights"
 args = sys.argv[1:]
