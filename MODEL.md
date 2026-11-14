@@ -61,32 +61,35 @@ degree is 2.1 minutes for M2 and N2 and 4.0 minutes for K1.
 | | speed, model over the printed band's middle | 0.88 |
 | ferry tracks, summer 2023 | observed cross-current against modelled, slope | 0.97 |
 
-By pass, in knots. The speed is the largest the four main constituents
-(M2 S2 K1 O1) can add up to, which is close to the maximum a current table
-prints for a big tide: the published reference station against the model's
+By pass, in knots. Each figure comes from a year of the four main
+constituents (M2 S2 K1 O1): every flood and ebb between two slacks has a
+peak, about 1,400 of them in the year, and the table gives the median peak
+and the largest. The published reference station is set against the model's
 fastest point on the section through it. Timing is that of the M2 current.
 
-| pass | observed, kn | model, kn | difference | M2 alone, obs / model | timing |
-|---|---:|---:|---:|---:|---:|
-| Sechelt Rapids | 17.5 | 13.3 | −4.2 | 7.5 / 6.2 | −18 min |
-| Seymour Narrows | 14.6 | 9.8 | −4.7 | 8.8 / 6.3 | −17 min |
-| Dodd Narrows | 8.7 | 7.5 | −1.2 | 5.2 / 4.6 | −16 min |
-| Porlier Pass | 8.6 | 8.0 | −0.5 | 4.7 / 4.7 | −19 min |
-| Gabriola Passage | 8.0 | 7.4 | −0.6 | 4.5 / 4.5 | −12 min |
-| Tillicum Bridge | 6.8 | 8.6 | +1.8 | 1.6 / 2.9 | −63 min |
-| Active Pass | 6.2 | 4.9 | −1.2 | 3.2 / 2.8 | −3 min |
-| Second Narrows | 5.9 | 6.4 | +0.5 | 2.9 / 3.2 | +10 min |
-| First Narrows | 5.8 | 4.5 | −1.4 | 2.6 / 2.3 | −8 min |
-| Calamity Point | 4.2 | 4.3 | +0.1 | 1.8 / 2.1 | +10 min |
+| pass | median peak, observed | model | difference | largest peak, observed | model | difference | timing |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| Sechelt Rapids | 7.8 | 6.4 | −1.4 | 15.7 | 12.5 | −3.3 | −18 min |
+| Seymour Narrows | 9.1 | 6.4 | −2.7 | 14.5 | 9.6 | −4.9 | −17 min |
+| Dodd Narrows | 5.3 | 4.7 | −0.5 | 8.7 | 7.3 | −1.4 | −16 min |
+| Porlier Pass | 4.8 | 4.8 | 0.0 | 8.5 | 7.8 | −0.6 | −19 min |
+| Gabriola Passage | 4.6 | 4.5 | 0.0 | 7.9 | 7.3 | −0.6 | −12 min |
+| Tillicum Bridge | 3.5 | 3.8 | +0.3 | 6.7 | 8.1 | +1.4 | −63 min |
+| Active Pass | 3.3 | 2.9 | −0.4 | 6.1 | 4.8 | −1.3 | −3 min |
+| Second Narrows | 3.0 | 3.3 | +0.3 | 5.4 | 5.9 | +0.5 | +10 min |
+| First Narrows | 2.7 | 2.3 | −0.4 | 5.4 | 4.2 | −1.2 | −8 min |
+| Calamity Point | 1.9 | 2.2 | +0.2 | 4.0 | 4.0 | 0.0 | +10 min |
 
-The model is within a knot and a half of the big-tide maximum at seven of
-the ten, and four to five knots slow at the two fastest. The shortfall is
-larger for the whole tide than for M2 alone because the model's diurnal
-currents are weaker than its semidiurnal ones.
+On an ordinary tide the model is within half a knot at eight of the ten
+passes. On the year's biggest it is within a knot and a half at seven and
+three to five knots slow at Sechelt and Seymour. The shortfall grows with
+the tide because the model's diurnal currents are weaker than its
+semidiurnal ones, and the biggest tides are the ones where the two add.
 
 ## Where it is wrong
 
-- **Seymour Narrows is 5 knots slow** on a big tide, 10 where the tables say 15. The model's northern boundary is just
+- **Seymour Narrows is slow**: 6 knots where the tables say 9 on an ordinary
+  tide, 10 where they say 15 on the biggest. The model's northern boundary is just
   beyond it, at Brown Bay, and the narrows inherit that.
 - **The diurnal tides are small**, K1 by 15% and O1 by 10%, from eastern
   Juan de Fuca inward. On this coast the diurnals are as large as the
@@ -95,7 +98,8 @@ currents are weaker than its semidiurnal ones.
   Haro runs strong.
 - **The Strait of Georgia's open-water currents are weak**, about a quarter under
   the current atlas in the southern Strait.
-- **Tillicum Bridge (the Gorge) runs 2 knots fast** and an hour early.
+- **Tillicum Bridge (the Gorge) runs fast on big tides**, by a knot and a half,
+  and an hour early.
 - **Drying ground is crude.** Depths are floored at 2 m, so flats that bare
   at low water stay wet in the model. The tide on a drying cell is clipped
   at its bed; read tide heights from water at least 3 m deep, which is what
