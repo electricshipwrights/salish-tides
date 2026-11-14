@@ -9,12 +9,15 @@ Strait of Georgia, and the San Juan and Gulf Islands. Tidal ranges reach about
 5 metres and currents in the narrow passes can exceed 10 knots.
 
 The weights in this repository store harmonic constants fitted from a 3D
-SCHISM hydrodynamic model onto nested grids from ~180 m in open water down to
-10 m in the passes. Given a location and timestamp, the reader evaluates the
-harmonic series directly, so lookups work offline for any date without
-pre-generated tables or a network service. This repository contains the
-exported weights, OpenStreetMap coastline polygons, and Python reader. See
-[MODEL.md](MODEL.md) for the underlying model setup and validation results.
+[SCHISM](https://schism-dev.github.io/schism/) hydrodynamic model onto nested
+grids from ~180 m in open water down to 10 m in the passes. Given a location
+and timestamp, the reader evaluates the harmonic series directly, so lookups
+work offline for any date without pre-generated tables or a network service.
+This repository contains the exported weights, OpenStreetMap coastline
+polygons, and Python reader. See [MODEL.md](MODEL.md) for the underlying
+model setup and validation results.
+
+![Tidal currents and headland eddies in Active Pass on the 10 m grid](images/active-pass-eddies.png)
 
 ```python
 from datetime import datetime, timezone
@@ -49,6 +52,8 @@ heights, depths, raw constituent constants, and US waters. `FlowPack` only
 inflates the 32x32 tile needed for a lookup, keeping memory usage low for
 mobile or web apps. `TidePack` is a small single-grid export for applications
 that only need water levels.
+
+![Nested grid refinement in Active Pass from 180 m to 57 m to 10 m](images/grid-refinement.png)
 
 ## Usage
 
@@ -96,6 +101,8 @@ the Strait of Georgia, Burrard Inlet, Howe Sound, Sechelt Inlet, and Discovery
 Passage north to Brown Bay. Puget Sound south of Admiralty Inlet is not
 covered.
 
+![Salish Sea model domain, regional grids, and 10 m pass locations](images/salish-sea-domain.png)
+
 Eleven passes have dedicated 10 m grids (Seymour Narrows, Sechelt Rapids, Dodd
 Narrows, Gabriola Passage, Porlier Pass, Active Pass, First Narrows, Second
 Narrows, Calamity Point, Tillicum Bridge, and Race Passage). Two ~60 m
@@ -103,6 +110,8 @@ regional grids cover the Active Pass and Sechelt areas, and a ~180 x 130 m
 grid covers the rest of the domain. `weights/pyramid/` and `weights/tide.pack`
 include both Canadian and US waters, while `weights/flow.pack` masks out US
 cells at the border.
+
+![10 m current fields in Seymour Narrows, Sechelt Rapids, Porlier Pass, and Dodd Narrows](images/four-passes.png)
 
 ## Notes and limitations
 
