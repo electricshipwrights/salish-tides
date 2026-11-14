@@ -131,7 +131,7 @@ cells at the border.
   `K1`, `O1`, `Q1`, `P1`) fitted to a 2025 run without 18.6-year lunar nodal
   adjustments, introducing an amplitude error of a few percent in other years.
 - **Accuracy:** Against gauges and CHS reference tables ([MODEL.md](MODEL.md)),
-  Strait of Georgia `M2` tide phases are within a few degrees (minutes),
+  Strait of Georgia `M2` tide timing is within about 7 minutes,
   diurnal amplitudes (`K1`, `O1`) run 10-15% low, and pass currents turn about
   10 minutes early on average. Peak `M2` speeds at 8 of the 10 reference
   passes are within 20% of published tables, with larger errors at Seymour

@@ -41,39 +41,40 @@ it can be divided out.
 ## How it scores
 
 Each figure is observed over modelled, so a value above 1 means the model
-is too weak. Phases are model minus observed; negative is early. At M2,
-one degree of phase is two minutes.
+is too weak. Timing is model minus observed, in minutes; negative is early.
+Each constituent's phase error is converted at its own period, so one
+degree is 2.1 minutes for M2 and N2 and 4.0 minutes for K1.
 
 | against | measure | result |
 |---|---|---|
 | 46 tide gauges | M2 amplitude, median | 0.95 |
-| | M2 phase, mean and RMS | −1.6° and 3.2° |
-| | N2 phase RMS | 7.8° |
+| | M2 timing, mean and RMS | −3 and 7 min |
+| | N2 timing RMS | 16 min |
 | | K1 and O1 amplitude, median | 1.15 and 1.10 |
-| | K1 phase RMS | 1.8° |
+| | K1 timing RMS | 7 min |
 | 10 CHS reference passes | M2 peak current, median | 1.06 |
 | | within 0.7 to 1.3 | 8 of 10 |
-| | M2 phase at the peak, mean and RMS | −5.5° and 11.4° |
+| | M2 timing at the peak, mean and RMS | −11 and 24 min |
 | 25 NOAA current-meter moorings | M2 against the depth average, median | 0.89 |
-| | M2 phase RMS | 12.4° |
+| | M2 timing RMS | 26 min |
 | CHS current atlas, 2025, open water | direction error, median | 9.5° |
 | | speed, model over the printed band's middle | 0.88 |
 | ferry tracks, summer 2023 | observed cross-current against modelled, slope | 0.97 |
 
-By pass, observed over modelled M2 peak current and the phase there:
+By pass, observed over modelled M2 peak current and its timing there:
 
-| pass | amplitude | phase |
+| pass | amplitude | timing |
 |---|---:|---:|
-| Seymour Narrows | 1.41 | −8° |
-| Sechelt Rapids | 1.20 | −9° |
-| First Narrows | 1.15 | −4° |
-| Active Pass | 1.14 | −2° |
-| Dodd Narrows | 1.11 | −8° |
-| Gabriola Passage | 1.00 | −6° |
-| Porlier Pass | 0.99 | −9° |
-| Second Narrows | 0.90 | +5° |
-| Calamity Point | 0.86 | +5° |
-| Tillicum Bridge | 0.54 | −30° |
+| Seymour Narrows | 1.41 | −17 min |
+| Sechelt Rapids | 1.20 | −18 min |
+| First Narrows | 1.15 | −8 min |
+| Active Pass | 1.14 | −3 min |
+| Dodd Narrows | 1.11 | −16 min |
+| Gabriola Passage | 1.00 | −12 min |
+| Porlier Pass | 0.99 | −19 min |
+| Second Narrows | 0.90 | +10 min |
+| Calamity Point | 0.86 | +10 min |
+| Tillicum Bridge | 0.54 | −63 min |
 
 ## Where it is wrong
 
@@ -82,11 +83,11 @@ By pass, observed over modelled M2 peak current and the phase there:
 - **The diurnal tides are small**, K1 by 15% and O1 by 10%, from eastern
   Juan de Fuca inward. On this coast the diurnals are as large as the
   semidiurnals, so high and low water heights are off by up to 15 cm.
-- **Rosario and Haro Strait currents turn early**, by 15 to 17 degrees, and
+- **Rosario and Haro Strait currents turn early**, by 30 to 35 minutes, and
   Haro runs strong.
 - **The Strait of Georgia's open-water currents are weak**, about a quarter under
   the current atlas in the southern Strait.
-- **Tillicum Bridge (the Gorge) is twice too fast** and half an hour early.
+- **Tillicum Bridge (the Gorge) is twice too fast** and an hour early.
 - **Drying ground is crude.** Depths are floored at 2 m, so flats that bare
   at low water stay wet in the model. The tide on a drying cell is clipped
   at its bed; read tide heights from water at least 3 m deep, which is what
