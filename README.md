@@ -1,4 +1,6 @@
-# Salish Sea tidal model: open weights
+# salish-tides
+
+The Salish Sea tidal model, as open weights.
 
 Tidal currents and tide heights for the Salish Sea, from Juan de Fuca to
 Seymour Narrows, as harmonic constants on grids from 180 m down to 10 m in
@@ -124,9 +126,16 @@ The two-dimensional model the apps shipped before it is not here.
 
 ## License
 
-The model weights and the code: not yet chosen. Until a license file is
-added, all rights are reserved.
+As open as the source data allows. Details and the required notices are in
+`LICENSING.md`.
 
-`weights/coast.pack` is a database derived from OpenStreetMap and is made
-available under the Open Database License 1.0, whatever is chosen for the
-rest. Credit "(c) OpenStreetMap contributors" wherever it is used.
+- **Code**: MIT.
+- **Coastline** (`weights/coast.pack`): Open Database License 1.0,
+  (c) OpenStreetMap contributors.
+- **Model weights**: Creative Commons Attribution-NonCommercial 4.0. The
+  non-commercial limit comes from the Canadian Hydrographic Service data and
+  the tidal atlas the model was computed from, not from us.
+
+This product is not to be used for navigation. It contains intellectual
+property of the Canadian Hydrographic Service of the Department of Fisheries
+and Oceans; the full notice their licence requires is in `LICENSING.md`.
